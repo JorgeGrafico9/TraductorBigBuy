@@ -58,18 +58,25 @@ public class Traductor_CSV {
         LeerCSV(CSVCat, CSVProd);
     }
  
-    //Métodos a implementar
+    //Métodos a implementar 
+    
+    //FALTA REVISAR
     
     void CompararColumnas(String columnaProd, String columnaCat) throws FileNotFoundException, IOException{
         //Le digo el separador que hay y hago un split de las columnas. Eso se mete en un array de strings
-        String [] subCategorias = columnaProd.split(",");
-        //Ahora uno por uno voy comparando la columna de las categorías que tengo con cada separación. 
+        String [] subCategorias = null;
+        subCategorias = columnaProd.split(",");
         for(int i=0; i< subCategorias.length ;i++){
+        System.out.println ("Mazo: "+ subCategorias[i].toString());
+        }
+        //Ahora uno por uno voy comparando la columna de las categorías que tengo con cada separación. 
+        /*for(int i=0; i< subCategorias.length ;i++){
             if(subCategorias[i].matches(columnaCat)){
             nombres[i]=subCategorias[i];}
-        }
-        CrearCSV(nombres);
+        }*/
+       // CrearCSV(nombres);
     }
+    
     
     
     //// Todo este lo he hecho a última hora y no sé si va a explotar. Revisar mañana 16/08/2017
@@ -129,16 +136,21 @@ public class Traductor_CSV {
                 
                  
                     while ((lineaProd = lectorProd.readNext())!= null){  
-                    System.out.println(lineaProd[3].toString()+ " ARCHIVO2");
-                    System.out.println(MaxProd);
+                //    System.out.println(lineaProd[3].toString()+ " ARCHIVO2");
+                //    System.out.println(MaxProd);
                     MaxProd++;
                     
                     //Lee las líneas del CSV de CATEGORIAS cada vez que se lee una nueva de PRODUCTOS y lo pone en lineaCat[]
+                    //Debería coger aquí el split y luego pasárselo a una función que me lo compare. Para no hacer el split 20 veces.
+                    
                     while ((lineaCat = lectorCat.readNext())!= null) { 
-                     System.out.println(lineaCat[0].toString() + " ARCHIVO1");
-                         System.out.println(MaxCat);
+                //     System.out.println(lineaCat[0].toString() + " ARCHIVO1");
+                //     System.out.println(MaxCat);
                          MaxCat++;
                          //Comparo cada columna con su correspondiente
+                         
+                         // CompararColumnas no debería ir aquí, lo hace todo demasiadas veces. 
+                         
                          CompararColumnas (lineaProd[3], lineaCat[0]);
                         
                     }
